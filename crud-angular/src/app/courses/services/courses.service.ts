@@ -18,4 +18,10 @@ export class CoursesService {
       tap((courses) => console.log('courses', courses))
     );
   }
+
+  save(record: Course) {
+    record.id = ''
+    return this.httpClient.post<Course>(this.API, record).pipe(first());
+  }
+
 }
