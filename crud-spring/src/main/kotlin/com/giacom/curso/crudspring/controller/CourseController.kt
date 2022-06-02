@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.PutMapping
 import java.util.UUID
 
 @RestController
@@ -19,6 +20,10 @@ class CourseController(val courseRepository: CourseRepository) {
     @PostMapping
     fun save(@RequestBody course:Course): Course {
         course.id = UUID.randomUUID().toString()
+        return courseRepository.save(course)
+    }
+    @PutMapping
+    fun update(@RequestBody course:Course): Course {
         return courseRepository.save(course)
     }
 }
